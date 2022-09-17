@@ -6,7 +6,9 @@ app.url_map.strict_slashes = False
 
 @app.route("/")
 def home():
-    return "API is working fine"
+    return {
+        'msg': 'API is working fine'
+    }
 
 
 if __name__ == "__main__":
