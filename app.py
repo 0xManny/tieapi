@@ -16,12 +16,15 @@ def home():
         'var': var
     }
 
-def scheduleTask():
+def setVar():
     var += 1
+
+def getVar():
+    return var
 
 
 if __name__ == "__main__":
     #app.debug = True
-    scheduler.add_job(id = 'Scheduled Task', func=scheduleTask, trigger="interval", seconds=10)
+    scheduler.add_job(id = 'Scheduled Task', func=setVar, trigger="interval", seconds=10)
     scheduler.start()
     app.run(host="0.0.0.0",port= 5000)
