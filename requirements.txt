@@ -3,5 +3,3 @@ fastapi
 uvicorn
 pysqlite3
 sqlalchemy
-
-cd /usr/local/lib/python3.9 && yum install sqlite-devel && ls -l && ls -al && make && make altinstall && cd ~ && pip3 install -r requirements.txt
