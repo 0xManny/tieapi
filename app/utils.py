@@ -6,9 +6,11 @@ import os
 
 print('\n\n',os.getcwd(),'\n\n')
 print('\n\n',os.listdir(),'\n\n')
+print('\n\n',os.listdir('app'),'\n\n')
 
-found_env = load_dotenv('.env')
-if not found_env:
+local_env = load_dotenv('.env')
+dev_env = load_dotenv('app/.env')
+if not (dev_env or local_env):
     raise Exception('Environment could not be found')
 
 fred = Fred(api_key=os.environ['FRED_KEY'])
