@@ -1,10 +1,10 @@
-from sqlalchemy import Column, Integer, Float
+from sqlalchemy import Column, Integer, Float, String
 from .database import Base
 
 class cpi(Base):
     __tablename__ = 'cpi'
 
-    date = Column(Integer, primary_key=True, index=True)
+    date = Column(String, primary_key=True, index=True)
     cpi = Column(Float)
 
     def __repr__(self):
@@ -40,7 +40,7 @@ class dji(Base):
 class fedfunds(Base):
     __tablename__ = 'fedfunds'
 
-    date = Column(Integer, primary_key=True, index=True)
+    date = Column(String, primary_key=True, index=True)
     fedfunds = Column(Float)
 
     def __repr__(self):

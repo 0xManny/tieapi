@@ -5,7 +5,7 @@ class OurBaseModel(BaseModel):
         orm_mode = True
 
 class cpi(OurBaseModel):
-    date: int
+    date: str
     cpi: float
 
 class dxy(OurBaseModel):
@@ -21,5 +21,5 @@ class dji(OurBaseModel):
     dji: float
 
 class fedfunds(OurBaseModel):
-    date: int
+    date: str
     fedfunds: float

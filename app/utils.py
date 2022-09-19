@@ -8,9 +8,8 @@ print('\n\n',os.getcwd(),'\n\n')
 print('\n\n',os.listdir(),'\n\n')
 print('\n\n',os.listdir('app'),'\n\n')
 
-local_env = load_dotenv('.env')
-dev_env = load_dotenv('app/.env')
-if not (dev_env or local_env):
+env_found = load_dotenv('.env')
+if not env_found:
     raise Exception('Environment could not be found')
 
 fred = Fred(api_key=os.environ['FRED_KEY'])
@@ -47,7 +46,7 @@ def get_cpi_data(model):
     data = []
     for index, row in df.iterrows():
         data.append(model(
-            date=int(pd.Timestamp(row['date']).timestamp()),
+            date=row['date'],
             cpi=row['cpi']
         ))
     return data
@@ -60,7 +59,7 @@ def get_fred_data(series, model):
     data = []
     for index, row in df.iterrows():
         data.append(model(**{
-            'date':int(pd.Timestamp(row['date']).timestamp()),
+            'date':str(row['date']),
             name:row[name]
         }))
     return data
