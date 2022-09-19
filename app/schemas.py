@@ -11,3 +11,11 @@ class cpi(OurBaseModel):
 class dxy(OurBaseModel):
     date: int
     dxy: float
+
+class spy(OurBaseModel):
+    date: int
+    spy: float
+
+class dji(OurBaseModel):
+    date: int
+    dji: float

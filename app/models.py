@@ -18,3 +18,21 @@ class dxy(Base):
 
     def __repr__(self):
         return f'({self.date}, {self.dxy})\n'
+
+class spy(Base):
+    __tablename__ = 'spy'
+
+    date = Column(Integer, primary_key=True, index=True)
+    spy = Column(Float)
+
+    def __repr__(self):
+        return f'({self.date}, {self.spy})\n'
+
+class dji(Base):
+    __tablename__ = 'dji'
+
+    date = Column(Integer, primary_key=True, index=True)
+    dji = Column(Float)
+
+    def __repr__(self):
+        return f'({self.date}, {self.dji})\n'
