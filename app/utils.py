@@ -42,7 +42,7 @@ def get_cpi_data(model):
     data = []
     for index, row in df.iterrows():
         data.append(model(
-            date=row['date'],
+            date=str(row['date']),
             cpi=row['cpi']
         ))
     return data
