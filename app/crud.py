@@ -5,10 +5,10 @@ from typing import List
 from . import models, schemas
 
 def get_cpi(db: Session, limit: int = 12) -> List[schemas.cpi]:
-    data = db.query(models.cpi).limit(limit)
+    data = db.query(models.cpi)
     if not data.count():
         return set_cpi(db, limit)
-    return data.all()
+    return data.all()[::-1][:limit]
 
 def set_cpi(db: Session, limit: int = 12) -> List[schemas.cpi]:
     resp = requests.get('https://download.bls.gov/pub/time.series/cu/cu.data.1.AllItems')
@@ -31,13 +31,13 @@ def set_cpi(db: Session, limit: int = 12) -> List[schemas.cpi]:
         ))
     db.bulk_save_objects(data)
     db.commit()
-    return data[:limit]
+    return data[::-1][:limit]
 
 def get_dxy(db: Session, limit: int = 365) -> List[schemas.dxy]:
-    data = db.query(models.dxy).limit(limit)
+    data = db.query(models.dxy)
     if not data.count():
         return set_dxy()
-    return data.all()
+    return data.all()[::-1][:limit]
 
 def set_dxy(db: Session, limit: int = 365) -> List[schemas.dxy]:
     '''
@@ -61,4 +61,4 @@ def set_dxy(db: Session, limit: int = 365) -> List[schemas.dxy]:
         ))
     db.bulk_save_objects(dxy.data)
     db.commit()
-    return dxy.data[:limit]
+    return dxy.data[::-1][:limit]
