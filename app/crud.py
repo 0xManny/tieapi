@@ -51,3 +51,15 @@ def set_dji(db: Session, limit: 365 * 2) -> List[schemas.dji]:
     db.bulk_save_objects(data)
     db.commit()
     return data[::-1][:limit]
+
+def get_fedfunds(db: Session, limit: 12 * 2) -> List[schemas.fedfunds]:
+    data = db.query(models.fedfunds)
+    if not data.count():
+        return set_fedfunds(db, limit)
+    return data[::-1][:limit]
+
+def set_fedfunds(db: Session, limit: 12 * 2) -> List[schemas.fedfunds]:
+    data = utils.get_fred_data(series='FEDFUNDS', model=models.fedfunds)
+    db.bulk_save_objects(data)
+    db.commit()
+    return data[::-1][:limit]

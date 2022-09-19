@@ -36,3 +36,12 @@ class dji(Base):
 
     def __repr__(self):
         return f'({self.date}, {self.dji})\n'
+
+class fedfunds(Base):
+    __tablename__ = 'fedfunds'
+
+    date = Column(Integer, primary_key=True, index=True)
+    fedfunds = Column(Float)
+
+    def __repr__(self):
+        return f'({self.date}, {self.fedfunds})\n'

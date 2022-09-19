@@ -3,5 +3,5 @@ fastapi
 uvicorn
 pysqlite3
 sqlalchemy
-certbot 
-certbot-nginx
+fredapi
+python-dotenv

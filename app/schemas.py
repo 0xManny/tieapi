@@ -19,3 +19,7 @@ class spy(OurBaseModel):
 class dji(OurBaseModel):
     date: int
     dji: float
+
+class fedfunds(OurBaseModel):
+    date: int
+    fedfunds: float

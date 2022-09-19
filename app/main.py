@@ -45,3 +45,10 @@ def get_dji(limit: int = 365, update: bool = False, db: Session = Depends(get_db
         db.query(models.dji).delete()
         return crud.set_dji(db, limit=limit)
     return crud.get_dji(db, limit=limit)
+
+@app.get('/fedfunds', response_model=List[schemas.fedfunds])
+def get_fedfunds(limit: int = 12 * 2, update: bool = False, db: Session = Depends(get_db)):
+    if update:
+        db.query(models.fedfunds).delete()
+        return crud.set_fedfunds(db, limit=limit)
+    return crud.get_fedfunds(db, limit=limit)

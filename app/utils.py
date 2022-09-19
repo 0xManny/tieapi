@@ -1,5 +1,14 @@
 import yfinance, requests
 import pandas as pd
+from fredapi import Fred
+from dotenv import load_dotenv
+import os
+
+found_env = load_dotenv('../.env')
+if not found_env:
+    raise Exception('Environment could not be found')
+
+fred = Fred(api_key=os.environ['FRED_KEY'])
 
 def get_yfinance_data(ticker, period, model):
     name = model.__tablename__
@@ -34,5 +43,18 @@ def get_cpi_data(model):
         data.append(model(
             date=int(pd.Timestamp(row['date']).timestamp()),
             cpi=row['cpi']
+        ))
+    return data
+
+def get_fred_data(series, model):
+    name = model.__tablename__
+    df = fred.get_series(series)
+    df = df.reset_index()
+    df.columns = ['date', name]
+    data = []
+    for index, row in df.iterrows():
+        data.append(model(
+            date=int(pd.Timestamp(row['date']).timestamp()),
+            cpi=row[name]
         ))
     return data
