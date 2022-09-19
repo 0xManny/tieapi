@@ -10,6 +10,7 @@ if not found_env:
 
 fred = Fred(api_key=os.environ['FRED_KEY'])
 
+
 def get_yfinance_data(ticker, period, model):
     name = model.__tablename__
     t = yfinance.Ticker(ticker)
@@ -53,8 +54,8 @@ def get_fred_data(series, model):
     df.columns = ['date', name]
     data = []
     for index, row in df.iterrows():
-        data.append(model(
-            date=int(pd.Timestamp(row['date']).timestamp()),
-            cpi=row[name]
-        ))
+        data.append(model(**{
+            'date':int(pd.Timestamp(row['date']).timestamp()),
+            name:row[name]
+        }))
     return data
