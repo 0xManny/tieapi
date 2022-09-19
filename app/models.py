@@ -4,7 +4,7 @@ from .database import Base
 class cpi(Base):
     __tablename__ = 'cpi'
 
-    date = Column(String, primary_key=True, index=True)
+    date = Column(String(7), primary_key=True, index=True)
     cpi = Column(Float)
 
     def __repr__(self):
@@ -40,7 +40,7 @@ class dji(Base):
 class fedfunds(Base):
     __tablename__ = 'fedfunds'
 
-    date = Column(String, primary_key=True, index=True)
+    date = Column(String(25), primary_key=True, index=True)
     fedfunds = Column(Float)
 
     def __repr__(self):
