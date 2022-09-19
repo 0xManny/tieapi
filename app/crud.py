@@ -48,8 +48,7 @@ def set_dxy(db: Session, limit: int = 365) -> List[schemas.dxy]:
         list[dict[int, float]] -> date (seconds since epoch) and dxy average price 
     '''
     dxy = yfinance.Ticker('DX-Y.NYB')
-    # hard coding '12mo' for now, maybe add as query parameter in future
-    dxy.df = dxy.history(period='12mo').reset_index()
+    dxy.df = dxy.history(period='max').reset_index()
     dxy.df['dxy'] = dxy.df[['Open','High','Low','Close']].mean(axis=1)
     dxy.df = dxy.df[['Date','dxy']]
     dxy.df.columns = ['date','dxy']
