@@ -3,3 +3,5 @@ fastapi
 uvicorn
 pysqlite3
 sqlalchemy
+certbot 
+certbot-nginx
