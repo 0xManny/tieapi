@@ -4,6 +4,9 @@ from fredapi import Fred
 from dotenv import load_dotenv
 import os
 
+print('\n\n',os.getcwd(),'\n\n')
+print('\n\n',os.listdir(),'\n\n')
+
 found_env = load_dotenv('.env')
 if not found_env:
     raise Exception('Environment could not be found')
